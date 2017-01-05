@@ -1,4 +1,2 @@
-import gi
-
-print('hello from python3')
+#import matplotlib
 
