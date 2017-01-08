@@ -7,9 +7,9 @@ import os, os.path
 from glob import glob
 
 BASE_DIR = 'Polish'
-ITEMS = ('EN', 'PL', 'ROM', 'IPA')
+ITEMS = ('EN', 'PB', 'IPA')
 OUTPUT_FILENAME = 'image-{number:0>4}-{item}.png'
-MAX_SENTENCES_PER_PAGE = 2
+MAX_SENTENCES_PER_PAGE = 3
 BORDER = 10
 
 def slicePage(image):

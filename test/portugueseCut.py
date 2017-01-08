@@ -6,8 +6,8 @@ import cv2
 import os, os.path
 from glob import glob
 
-BASE_DIR = 'Polish'
-ITEMS = ('EN', 'PL', 'ROM', 'IPA')
+BASE_DIR = 'Portuguese'
+ITEMS = ('EN', 'PB', 'IPA')
 OUTPUT_FILENAME = 'image-{number:0>4}-{item}.png'
 MAX_SENTENCES_PER_PAGE = 2
 BORDER = 10
