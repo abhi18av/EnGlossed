@@ -6,7 +6,7 @@ import cv2
 import os, os.path
 from glob import glob
 
-BASE_DIR = 'ENZHZS-F3-EBK'
+BASE_DIR = 'ENZHZS-F1-EBK'
 ITEMS = ('ENG', 'ZH-HANZI', 'ZH-PINYIN', 'ZH-IPA', 'ZS-HANZI', 'ZS-PINYIN', 'ZS-IPA')
 OUTPUT_FILENAME = 'GLOSSIKA-FLUENCY3-{number:0>4}-{item}.png'
 MAX_SENTENCES_PER_PAGE = 2
