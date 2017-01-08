@@ -19,7 +19,7 @@ def slicePage(image):
 	# threashold image and detect contours
 	imgray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 	_,thresh = cv2.threshold(imgray, 250, 255, cv2.THRESH_BINARY)
-	contours,_ = cv2.findContours(thresh.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+	_,contours,_ = cv2.findContours(thresh.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
 	# find the little rectangles next to the sentences
 	squares = []
