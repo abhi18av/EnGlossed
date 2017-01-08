@@ -1,12 +1,10 @@
 import os, os.path
 os.chdir("/Users/eklavya/Projects/Amsterdam/EnGlossed")
 
-
 import numpy as np
 import cv2
+import os, os.path
 from glob import glob
-
-
 
 BASE_DIR = 'ENZHZS-F3-EBK'
 ITEMS = ('ENG', 'ZH-HANZI', 'ZH-PINYIN', 'ZH-IPA', 'ZS-HANZI', 'ZS-PINYIN', 'ZS-IPA')
@@ -20,13 +18,12 @@ def slicePage(image):
 
 	# threashold image and detect contours
 	imgray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-	*_,thresh = cv2.threshold(imgray, 250, 255, cv2.THRESH_BINARY)
-	_,contours,*_ = cv2.findContours(thresh.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+	_,thresh = cv2.threshold(imgray, 250, 255, cv2.THRESH_BINARY)
+	contours,_ = cv2.findContours(thresh.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
 	# find the little rectangles next to the sentences
 	squares = []
 	for cnt in contours:
-		print(len(cnt))
 		cnt_len = cv2.arcLength(cnt, True)
 		cnt = cv2.approxPolyDP(cnt, 0.1*cnt_len, True)
 		if len(cnt) == 4 and cv2.contourArea(cnt) > rect_area:
@@ -84,16 +81,16 @@ for item in ITEMS:
 # list image files
 files = sorted(glob(os.path.join(BASE_DIR,'*.png')))
 if len(files) == 0:
-	print 'No files found.'
+	print('No files found.')
 	quit()
 
 sentenceNo = 0
 for filename in files:
-	print '[+] {}'.format(filename)
+	print('[+] {}'.format(filename))
 	image = cv2.imread(filename)
 	slices = slicePage(image)
 	if slices is None:
-		print 'Not a sentence page.'
+		print('Not a sentence page.')
 		continue
 
 	for i, item in enumerate(slices):
@@ -109,4 +106,4 @@ for filename in files:
 		outfilename = OUTPUT_FILENAME.format(number=sentenceNo, item=ITEMS[i % len(ITEMS)])
 		cv2.imwrite(os.path.join(BASE_DIR, ITEMS[i % len(ITEMS)], outfilename), image)
 
-print 'Sliced {} sentences.'.format(sentenceNo)
+print('Sliced {} sentences.'.format(sentenceNo))
